@@ -82,11 +82,16 @@ class RWMB_Autoloader {
 			// Core.
 			'core',
 			'clone',
-			'helper',
 			'meta-box',
+			'meta-box-registry',
+			'storage-registry',
+			'interfaces/storage.php',
+			'storages/base.php',
+			'storages/post.php',
 			'validation',
-			'sanitize',
+			'sanitizer',
 			'media-modal',
+			'wpml',
 
 			// Walkers.
 			'walkers/walker',
@@ -96,6 +101,7 @@ class RWMB_Autoloader {
 
 			// Fields.
 			'field',
+			'field-registry',
 
 			'fields/multiple-values',
 			'fields/autocomplete',
