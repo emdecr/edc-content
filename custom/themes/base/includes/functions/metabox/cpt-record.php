@@ -15,7 +15,7 @@ function edc_register_record( $meta_boxes ) {
     // ALL PAGES
     $meta_boxes[] = array(
         'title'      => __( 'Banner Area', 'textdomain' ),
-        'post_types' => array( 'page'),
+        'post_types' => array('record'),
         'fields' => array(
             array(
                'id'   => $prefix . 'banner_heading',
@@ -31,7 +31,7 @@ function edc_register_record( $meta_boxes ) {
     );
     $meta_boxes[] = array(
         'title'      => __( 'Content Blocks', 'textdomain' ),
-        'post_types' => array( 'record'),
+        'post_types' => array('record'),
         'fields' => array(
             array(
                 'id' => $prefix . 'content_blocks',
@@ -62,21 +62,21 @@ function edc_register_record( $meta_boxes ) {
                         'desc'  => '',
                         'id'    => $prefix . 'block_copy',
                         'type'  => 'wysiwyg',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'Content' ) )
+                        'visible' => array( 'edc_block_fields', 'contains', array( 'content' ) )
                     ),
                     array(
                         'name'  => __( 'Raw HTML', 'textdomain' ),
                         'desc'  => '',
                         'id'    => $prefix . 'block_raw',
                         'type'  => 'textarea',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'HTML' ) )
+                        'visible' => array( 'edc_block_fields', 'contains', array( 'html' ) )
                     ),
                     array(
                         'name'  => __( 'Image', 'textdomain' ),
                         'desc'  => '',
                         'id'    => $prefix . 'block_img',
                         'type'  => 'file_input',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'Image' ) )
+                        'visible' => array( 'edc_block_fields', 'contains', array( 'image' ) )
                     ),
                 ),
             ),
