@@ -45,38 +45,47 @@ function edc_register_record( $meta_boxes ) {
                     array(
                         'name'    => 'Fields',
                         'id'      => $prefix . 'block_fields',
-                        'type'    => 'checkbox_list',
-                        // Options of checkboxes, in format 'value' => 'Label'
+                        'type'    => 'radio',
                         'options' => array(
                             'content'   => 'Content',
                             'html'      => 'HTML',
                             'image'     => 'Image'
                         ),
                         // Display options in a single row?
-                        'inline' => true,
-                        // Display "Select All / None" button?
-                        'select_all_none' => false,
+                        'inline' => true
                     ),                    
                     array(
                         'name'  => __( 'Copy', 'textdomain' ),
                         'desc'  => '',
                         'id'    => $prefix . 'block_copy',
                         'type'  => 'wysiwyg',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'content' ) )
+                        'visible' => array( 'edc_block_fields', '=', 'content' )
                     ),
                     array(
                         'name'  => __( 'Raw HTML', 'textdomain' ),
                         'desc'  => '',
                         'id'    => $prefix . 'block_raw',
                         'type'  => 'textarea',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'html' ) )
+                        'visible' => array( 'edc_block_fields', '=', 'html' )
                     ),
                     array(
                         'name'  => __( 'Image', 'textdomain' ),
                         'desc'  => '',
                         'id'    => $prefix . 'block_img',
                         'type'  => 'file_input',
-                        'visible' => array( 'edc_block_fields', 'contains', array( 'image' ) )
+                        'visible' => array( 'edc_block_fields', '=', 'image' )
+                    ),
+                    array(
+                        'name'    => 'Fields',
+                        'id'      => $prefix . 'block_img_type',
+                        'type'    => 'radio',
+                        'options' => array(
+                            'default'   => 'Default',
+                            'full'      => 'Full-width'
+                        ),
+                        // Display options in a single row?
+                        'inline' => true,
+                        'visible' => array( 'edc_block_fields', '=', 'image' )
                     ),
                 ),
             ),
