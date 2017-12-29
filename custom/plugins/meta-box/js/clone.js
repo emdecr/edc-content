@@ -14,7 +14,7 @@ jQuery( function ( $ ) {
 				var $field = $( this );
 
 				// Name attribute
-				var name = $field.attr( 'name' );
+				var name = this.name;
 				if ( name && ! $field.closest( '.rwmb-group-clone' ).length ) {
 					$field.attr( 'name', cloneIndex.replace( index, name, '[', ']', false ) );
 				}
@@ -92,6 +92,7 @@ jQuery( function ( $ ) {
 		reset: function() {
 			cloneValue.$field = $( this );
 			cloneValue.type = cloneValue.$field.attr( 'type' );
+			cloneValue.isHiddenField = cloneValue.$field.hasClass( 'rwmb-hidden' );
 
 			if ( true === cloneValue.$field.data( 'clone-default' ) ) {
 				cloneValue.resetToDefault();
@@ -110,7 +111,7 @@ jQuery( function ( $ ) {
 				cloneValue.$field.prop( 'checked', !!defaultValue );
 			} else if ( 'select' === cloneValue.type ) {
 				cloneValue.$field.find( 'option[value="' + defaultValue + '"]' ).prop( 'selected', true );
-			} else if ( 'hidden' !== cloneValue.type ) {
+			} else if ( ! cloneValue.isHiddenField ) {
 				cloneValue.$field.val( defaultValue );
 			}
 		},
@@ -122,7 +123,7 @@ jQuery( function ( $ ) {
 				cloneValue.$field.prop( 'checked', false );
 			} else if ( 'select' === cloneValue.type ) {
 				cloneValue.$field.prop( 'selectedIndex', - 1 );
-			} else if ( 'hidden' !== cloneValue.type ) {
+			} else if ( ! cloneValue.isHiddenField ) {
 				cloneValue.$field.val( '' );
 			}
 		}
@@ -136,11 +137,7 @@ jQuery( function ( $ ) {
 		var $last = $container.children( '.rwmb-clone' ).last(),
 			$clone = $last.clone(),
 			inputSelectors = 'input[class*="rwmb"], textarea[class*="rwmb"], select[class*="rwmb"], button[class*="rwmb"]',
-			$inputs = $clone.find( inputSelectors ),
 			nextIndex = cloneIndex.nextIndex( $container );
-
-		// Reset value for fields
-		$inputs.each( cloneValue.reset );
 
 		// Insert Clone
 		$clone.insertAfter( $last );
@@ -148,11 +145,18 @@ jQuery( function ( $ ) {
 		// Trigger custom event for the clone instance. Required for Group extension to update sub fields.
 		$clone.trigger( 'clone_instance', nextIndex );
 
+		// Reset value for fields
+		var $inputs = $clone.find( inputSelectors );
+		$inputs.each( cloneValue.reset );
+
 		// Set fields index. Must run before trigger clone event.
 		cloneIndex.set( $inputs, nextIndex );
 
-		// Trigger custom clone event
+		// Trigger custom clone event.
 		$inputs.trigger( 'clone', nextIndex );
+
+		// After cloning fields.
+		$inputs.trigger( 'after_clone', nextIndex );
 	}
 
 	/**
@@ -221,7 +225,7 @@ jQuery( function ( $ ) {
 			.data( 'next-index', $container.children( '.rwmb-clone' ).length )
 			.sortable( {
 				handle: '.rwmb-clone-icon',
-				placeholder: ' rwmb-clone rwmb-clone-placeholder',
+				placeholder: ' rwmb-clone rwmb-sortable-placeholder',
 				items: '.rwmb-clone',
 				start: function ( event, ui ) {
 					// Make the placeholder has the same height as dragged item
