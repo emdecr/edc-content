@@ -18,12 +18,12 @@ function edc_register_default( $meta_boxes ) {
         'post_types' => array( 'page'),
         'fields' => array(
             array(
-               'id'   => $prefix . 'banner_heading',
+               'id'   => $prefix . 'default_heading',
                'name' => __( 'Heading', 'textdomain' ),
                'type' => 'text',
             ),
             array(
-               'id'   => $prefix . 'banner_subheading',
+               'id'   => $prefix . 'default_subheading',
                'name' => __( 'Subheading', 'textdomain' ),
                'type' => 'wysiwyg',
             )
