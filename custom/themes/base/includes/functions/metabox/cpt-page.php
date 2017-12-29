@@ -29,6 +29,80 @@ function edc_register_default( $meta_boxes ) {
             )
         ),
     );
+    // HOME
+    $meta_boxes[] = array(
+        'title'      => __( 'Home', 'textdomain' ),
+        'post_types' => array( 'page'),
+        'show'   => array(
+            // List of page templates (used for page only). Array. Optional.
+            'template'    => array( 'template-home.php' )
+        ),
+        'fields' => array(
+            // array(
+            //    'id'   => $prefix . 'home_heading',
+            //    'name' => __( 'Heading', 'textdomain' ),
+            //    'type' => 'text',
+            // ),
+            // array(
+            //    'id'   => $prefix . 'home_over',
+            //    'name' => __( 'Overview', 'textdomain' ),
+            //    'type' => 'wysiwyg',
+            // ),
+            // array(
+            //     'id'   => $prefix . 'home_img',
+            //     'name' => __( 'Image', 'textdomain' ),
+            //     'type' => 'file_input',
+            // )
+        )
+    );
+    // ABOUT
+    $meta_boxes[] = array(
+        'title'      => __( 'About - Shelf', 'textdomain' ),
+        'post_types' => array( 'page'),
+        'show'   => array(
+            // List of page templates (used for page only). Array. Optional.
+            'template'    => array( 'template-about.php' )
+        ),
+        'fields' => array(
+            array(
+               'id'   => $prefix . 'about_shelf_copy',
+               'name' => __( 'Content', 'textdomain' ),
+               'type' => 'wysiwyg',
+            )
+        )
+    );
+    $meta_boxes[] = array(
+        'title'      => __( 'About - Latest Track', 'textdomain' ),
+        'post_types' => array( 'page'),
+        'show'   => array(
+            // List of page templates (used for page only). Array. Optional.
+            'template'    => array( 'template-about.php' )
+        ),
+        'fields' => array(
+            array(
+               'id'   => $prefix . 'about_track_copy',
+               'name' => __( 'Content', 'textdomain' ),
+               'type' => 'wysiwyg',
+            )
+        )
+    );
+    $meta_boxes[] = array(
+        'title'      => __( 'About - Github', 'textdomain' ),
+        'post_types' => array( 'page'),
+        'show'   => array(
+            // List of page templates (used for page only). Array. Optional.
+            'template'    => array( 'template-about.php' )
+        ),
+        'fields' => array(
+            array(
+               'id'   => $prefix . 'about_github_copy',
+               'name' => __( 'Content', 'textdomain' ),
+               'type' => 'wysiwyg',
+            )
+        )
+    );
+    // PROJECTS
+    // CONTACT
     return $meta_boxes;
 }
 ?>

@@ -8,5 +8,4 @@ require_once('includes/functions/enqueue-script.php');
 require_once('includes/functions/metabox/cpt-page.php');
 require_once('includes/functions/metabox/cpt-post.php');
 require_once('includes/functions/metabox/cpt-project.php');
-require_once('includes/functions/metabox/cpt-record.php');
 ?>
