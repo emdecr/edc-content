@@ -13,22 +13,6 @@ add_filter( 'rwmb_meta_boxes', 'edc_register_default' );
 function edc_register_default( $meta_boxes ) {
     $prefix = 'edc_';
     // ALL PAGES
-    $meta_boxes[] = array(
-        'title'      => __( 'Banner Area', 'textdomain' ),
-        'post_types' => array( 'page'),
-        'fields' => array(
-            array(
-               'id'   => $prefix . 'default_heading',
-               'name' => __( 'Heading', 'textdomain' ),
-               'type' => 'text',
-            ),
-            array(
-               'id'   => $prefix . 'default_subheading',
-               'name' => __( 'Subheading', 'textdomain' ),
-               'type' => 'wysiwyg',
-            )
-        ),
-    );
     // HOME
     $meta_boxes[] = array(
         'title'      => __( 'Home', 'textdomain' ),
@@ -56,6 +40,21 @@ function edc_register_default( $meta_boxes ) {
         )
     );
     // ABOUT
+    $meta_boxes[] = array(
+        'title'      => __( 'About - Tech Stack', 'textdomain' ),
+        'post_types' => array( 'page'),
+        'show'   => array(
+            // List of page templates (used for page only). Array. Optional.
+            'template'    => array( 'template-about.php' )
+        ),
+        'fields' => array(
+            array(
+               'id'   => $prefix . 'about_tech_stack',
+               'name' => __( 'Content', 'textdomain' ),
+               'type' => 'wysiwyg',
+            )
+        )
+    );
     $meta_boxes[] = array(
         'title'      => __( 'About - Shelf', 'textdomain' ),
         'post_types' => array( 'page'),
