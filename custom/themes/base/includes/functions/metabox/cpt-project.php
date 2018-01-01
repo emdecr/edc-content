@@ -13,7 +13,7 @@ add_filter( 'rwmb_meta_boxes', 'edc_register_project' );
 function edc_register_project( $meta_boxes ) {
     $prefix = 'edc_';
     $meta_boxes[] = array(
-        'title'      => __( 'Banner Area', 'textdomain' ),
+        'title'      => __( 'Details', 'textdomain' ),
         'post_types' => array( 'project'),
         'fields' => array(
             array(
@@ -25,7 +25,22 @@ function edc_register_project( $meta_boxes ) {
                'id'   => $prefix . 'banner_subheading',
                'name' => __( 'Subheading', 'textdomain' ),
                'type' => 'wysiwyg',
-            )
+            ),
+            array(
+                'id'   => $prefix . 'project_details_img',
+                'name' => __( 'Image', 'textdomain' ),
+                'type' => 'file_input',
+            ),
+            array(
+                'id'   => $prefix . 'project_details_img_hover',
+                'name' => __( 'Subheading', 'textdomain' ),
+                'type' => 'file_input',
+            ),
+            array(
+                'id'   => $prefix . 'project_details_meta',
+                'name' => __( 'Subheading', 'textdomain' ),
+                'type' => 'wysiwyg',
+            ),
         ),
     );
     return $meta_boxes;
